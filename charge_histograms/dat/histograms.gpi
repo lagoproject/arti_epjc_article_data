@@ -1,0 +1,44 @@
+reset
+name="Lima"
+alt=150
+si="lim"
+# site="Marambio"
+# alt=200
+# si="sawb"
+# site="La Serena"
+# alt=28
+# si="lsc"
+# site="Chacaltaya"
+# alt=5240
+set size ratio square
+set grid ytics lw 0.7
+set grid xtics lw 0.7
+set key font "Arial, 14"
+set xtics font "Arial, 14"
+set ytics font "Arial, 14"
+set log y
+set format y "10^{%L}"
+set xrange [0:1080]
+set yrange [0.000033333:10000]
+set xlabel "Energy deposited [MeV]" font "Arial, 16"
+set ylabel "Counts" font "Arial, 16"
+
+# functions
+t(s,h)=sprintf("%s (%d m a.s.l.)", s, h)
+f(x,y)=sprintf("en_%s_%s.dat",x,y)
+o(x)=sprintf("1s_1m_%s.pdf",x)
+
+# final sets
+set title t(site, alt)
+n=2820.36
+plot	f(si,"all")		u 1:($2/n) with histeps lw 2 lc rgb 'black'			t 'All particles',\
+		f(si, "muon")	u 1:($2/n) with histeps lw 2 lc rgb 'orange'		t '{/Symbol m^{-}} {/Symbol m^{+}}',\
+		f(si, "elec")	u 1:($2/n) with histeps lw 2 lc rgb 'dark-green'	t "{e^{-}} {e^{+}}",\
+		f(si, "gamm")	u 1:($2/n) with histeps lw 2 lc rgb 'dark-violet'	t '{/Symbol g}',\
+		f(si, "lim")	u 1:($2/n) with histeps lw 2 lc rgb 'blue' t "n",\
+		f(si, "hadr")	u 1:($2/n) with histeps lw 2 lc rgb 'red' t "Hadrons"
+set term pdfcairo
+set out o(name)
+rep
+set out
+set term
