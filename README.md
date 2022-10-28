@@ -1,5 +1,7 @@
 #  The ARTI framework: cosmic rays atmospheric background simulations
 
+[![DOI](https://zenodo.org/badge/558859326.svg)](https://zenodo.org/badge/latestdoi/558859326)
+
 Set of data produced and analyzed for the study published in
 
 *The ARTI framework: cosmic rays atmospheric background simulations*\
